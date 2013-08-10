@@ -18,11 +18,32 @@ namespace Grid
         // Properties
         //
 
-        public bool IsUp
+        public bool IsZUp
         {
             get
             {
-                throw new NotImplementedException();      // not impelmented
+                // find which two have the same z values
+                float z0 = edges[0].z;
+                float z1 = edges[1].z;
+                float z2 = edges[2].z;
+
+                // put it through case switch
+                if (z0 == z1)
+                {
+                    return z0 < z2;
+                }
+                else if (z1 == z2)
+                {
+                    return z1 < z0;
+                }
+                else if (z0 == z2)
+                {
+                    return z0 < z1;
+                }
+                else
+                {
+                    throw new Exception("There seems to be something wrong with the edges");
+                }
             }
         }
 
@@ -51,7 +72,7 @@ namespace Grid
             edges = new Vector3[3];
         }
 
-        public ~GridTile()
+        ~GridTile()
         {
 
         }
